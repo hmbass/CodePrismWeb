@@ -8,11 +8,42 @@
 	<packaging>war</packaging>
 	<version>1.0.0-BUILD-SNAPSHOT</version>
 	<properties>
+		<env>local</env>
 		<java-version>1.7</java-version>
 		<org.springframework-version>4.1.7.RELEASE</org.springframework-version>
 		<org.aspectj-version>1.6.10</org.aspectj-version>
 		<org.slf4j-version>1.6.6</org.slf4j-version>
+		<tibero-version>5.1</tibero-version>
 	</properties>
+	
+	<!-- profiles>
+		<profile>
+			<id>local</id>
+			<properties>
+				<env>local</env>
+			</properties>
+		</profile>
+		<profile>
+			<id>dev</id>
+			<properties>
+				<env>dev</env>
+			</properties>
+		</profile>
+		<profile>
+			<id>cpreal</id>
+			<properties>
+				<env>cpreal</env>
+			</properties>
+		</profile>
+		<profile>
+			<id>cereal</id>
+			<properties>
+				<env>cereal</env>
+			</properties>
+		</profile>
+	</profiles -->
+	
+	
 	<dependencies>
 		<!-- Spring -->
 		<dependency>
@@ -135,12 +166,27 @@
 		</dependency>
 		
 		<!-- https://mvnrepository.com/artifact/org.postgresql/postgresql -->
-		<dependency>
+		<!-- dependency>
 		    <groupId>org.postgresql</groupId>
 		    <artifactId>postgresql</artifactId>
 		    <version>42.2.5</version>
-		</dependency>
+		</dependency -->
 		
+		<!-- https://mvnrepository.com/artifact/org.postgresql/postgresql -->
+		<dependency>
+		    <groupId>org.postgresql</groupId>
+		    <artifactId>postgresql</artifactId>
+		    <version>42.2.5.jre6</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.tmax.tibero</groupId>
+			<artifactId>tibero-jdbc</artifactId>
+			<version>${tibero-version}</version>
+			<scope>system</scope>
+			<systemPath>${user.home}/.m2/repository/com/tmax/tibero/tibero5-jdbc.jar</systemPath>
+		</dependency>
+
 		<!-- https://mvnrepository.com/artifact/org.mybatis/mybatis -->
 		<dependency>
 		    <groupId>org.mybatis</groupId>
@@ -164,6 +210,12 @@
 		
 	</dependencies>
     <build>
+    		<!-- resources>
+            <resource>
+                <directory>src/main/resources/${env}</directory>
+            </resource>
+    		</resources-->
+
         <plugins>
             <plugin>
                 <artifactId>maven-eclipse-plugin</artifactId>
